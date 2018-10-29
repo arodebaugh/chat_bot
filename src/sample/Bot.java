@@ -7,6 +7,11 @@ public class Bot {
     private String name;
     private String age;
 
+    public void transferValues(String transferName, String transferAge) {
+        name = transferName;
+        age = transferAge;
+    }
+
     public String newUser(int step, String input) {
 
         if (step == 1) {
@@ -39,6 +44,8 @@ public class Bot {
             return responsesToBye[idx];
         } else if (response.contains("age")) {
             return "You are " + age + " years old!";
+        }else if (response.contains("name")) {
+            return "You are " + name + "!";
         } else if (response.equals("help")) {
             return "I am quite limited in my capabilities currently. Todo: list of commands/conversations";
         } else {

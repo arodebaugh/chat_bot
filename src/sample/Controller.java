@@ -26,6 +26,11 @@ public class Controller {
     private String name;
     private String age;
 
+    public void initialize() {
+        chatText.requestFocus();
+        readFile();
+    }
+
     private void readFile() {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
@@ -46,6 +51,9 @@ public class Controller {
                         newUser = false;
                         name = input.readLine();
                         age = input.readLine();
+
+                        bot.transferValues(name, age);
+
                         helloText.setText("Hello, " + name);
                         welcomeBack();
                     }
@@ -57,11 +65,6 @@ public class Controller {
             e.printStackTrace();
             chatList.getItems().add("Error: " + e);
         }
-    }
-
-    public void initialize() {
-        chatText.requestFocus();
-        readFile();
     }
 
     public void clearData() {
@@ -100,6 +103,7 @@ public class Controller {
         } else if (waitingFor == 2) {
             age = chatText.getText();
             chatList.getItems().add("Bot: " + bot.newUser(2, age));
+            bot.transferValues(name, age);
             waitingFor = 0;
         } else {
             chatList.getItems().add("Bot: Error waiting for is either < 0 or > 2");

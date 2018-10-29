@@ -10,7 +10,7 @@ public class Main extends Application {
     private Controller myController;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load();
         myController = loader.getController();
