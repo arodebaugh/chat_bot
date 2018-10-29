@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <top>
+      <HBox prefHeight="18.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <ToolBar prefHeight="39.0" prefWidth="598.0">
+               <items>
+                  <Label fx:id="helloText" text="Hello, guest." />
+                  <Region prefHeight="27.0" prefWidth="409.0" />
+                  <Button fx:id="clearDataButton" mnemonicParsing="false" onAction="#clearData" prefHeight="27.0" prefWidth="92.0" text="Clear Data" />
+               </items>
+            </ToolBar>
+         </children></HBox>
+   </top>
+   <bottom>
+      <HBox prefHeight="31.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Region prefHeight="31.0" prefWidth="20.0" />
+            <TextField fx:id="chatText" onAction="#onEnter" prefHeight="27.0" prefWidth="539.0" promptText="Type here..." />
+            <Region prefHeight="31.0" prefWidth="25.0" />
+            <Button fx:id="okayButton" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="27.0" prefWidth="73.0" text="SEND" />
+            <Region prefHeight="31.0" prefWidth="26.0" />
+         </children></HBox>
+   </bottom>
+   <center>
+      <ListView fx:id="chatList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
