@@ -13,7 +13,7 @@ public class Controller {
     public Button okayButton;
     public Button clearDataButton;
     public TextField chatText;
-    public ListView chatList;
+    public ListView<String> chatList;
     public Label helloText;
 
     private Bot bot = new Bot();
