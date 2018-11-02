@@ -1,11 +1,14 @@
 package sample;
 
+import javafx.scene.control.Label;
+
 import java.util.Random;
 
 public class Bot {
-    private boolean newUser = false;
     private String name;
     private String age;
+
+    public Label botSideBar;
 
     public void transferValues(String transferName, String transferAge) {
         name = transferName;
@@ -22,8 +25,6 @@ public class Bot {
                 "Hello human! What is your name?",
                 "Lovely name " + name + ". How old are you?",
                 "Great!"};
-
-        newUser = true;
         return newUserResponses[step];
     }
 
@@ -38,7 +39,6 @@ public class Bot {
     }
 
     public String respond(String to) {
-
         // Dictionary of phrases
         String[] commonGreetings = {"hi", "hello", "sup", "hey"};
         String[] commonFarewells = {"bye", "see you"};
@@ -90,14 +90,14 @@ public class Bot {
         for (int i = 0; i < commonGreetings.length; i++) {
             if (response.contains(commonGreetings[i])) {
                 int idx = new Random().nextInt(commonGreetings.length);
-                return commonGreetings[idx] + punctuation[1];
+                return commonGreetings[idx].substring(0, 1).toUpperCase() + commonGreetings[idx].substring(1) + punctuation[1];
             }
         }
 
         for (int i = 0; i < commonFarewells.length; i++) {
             if (response.contains(commonFarewells[i])) {
                 int idx = new Random().nextInt(commonFarewells.length);
-                return commonFarewells[idx] + punctuation[1];
+                return commonFarewells[idx].substring(0, 1).toUpperCase() + commonFarewells[idx].substring(1) + punctuation[1];
             }
         }
 
@@ -113,6 +113,7 @@ public class Bot {
 
         // Responses to common starts of sentences.
 
+        /*
         for (int i = 0; i < start.length; i++) {
             if (response.contains(start[i])) {
                 if (response.contains("you") || response.contains("your")) {
@@ -120,6 +121,7 @@ public class Bot {
                 }
             }
         }
+        */
 
         if (response.contains(start[0])) {
             int idx = new Random().nextInt(amIResponses.length);

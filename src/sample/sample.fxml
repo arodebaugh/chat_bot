@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -25,14 +26,26 @@
    <bottom>
       <HBox prefHeight="31.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Region prefHeight="31.0" prefWidth="20.0" />
-            <TextField fx:id="chatText" onAction="#onEnter" prefHeight="27.0" prefWidth="539.0" promptText="Type here..." />
-            <Region prefHeight="31.0" prefWidth="25.0" />
-            <Button fx:id="okayButton" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="27.0" prefWidth="73.0" text="SEND" />
-            <Region prefHeight="31.0" prefWidth="26.0" />
+            <Pane prefHeight="31.0" prefWidth="99.0" />
+            <TextField fx:id="chatText" onAction="#onEnter" prefHeight="27.0" prefWidth="441.0" promptText="Type here..." />
+            <Button fx:id="okayButton" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="27.0" prefWidth="58.0" text="SEND" />
          </children></HBox>
    </bottom>
    <center>
       <ListView fx:id="chatList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Users">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Pane prefHeight="16.0" prefWidth="100.0" />
+            <Label fx:id="userSideBar" text="Guest" />
+            <Label fx:id="botSideBar" text="Bot" />
+         </children>
+      </VBox>
+   </left>
 </BorderPane>

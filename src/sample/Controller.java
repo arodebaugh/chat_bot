@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ListView;
 
 import java.io.*;
+import java.util.concurrent.TimeUnit;
 
 import java.net.URL;
 
@@ -15,6 +16,8 @@ public class Controller {
     public TextField chatText;
     public ListView<String> chatList;
     public Label helloText;
+    public Label userSideBar;
+    public Label botSideBar;
 
     private Bot bot = new Bot();
 
@@ -25,6 +28,8 @@ public class Controller {
 
     private String name;
     private String age;
+
+    private String chat;
 
     public void initialize() {
         chatText.requestFocus();
@@ -55,6 +60,7 @@ public class Controller {
                         bot.transferValues(name, age);
 
                         helloText.setText("Hello, " + name);
+                        userSideBar.setText(name);
                         welcomeBack();
                     }
                 }
@@ -88,28 +94,46 @@ public class Controller {
         chatList.getItems().removeAll();
         chatList.getItems().add("Bot: Data has been cleared.");
         helloText.setText("Hello, guest.");
+        userSideBar.setText("Guest");
         newUser();
     }
 
-    public void buttonClicked() {
-        chatList.getItems().add("User: " + chatText.getText());
+    private void runChat() {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            chatList.getItems().add("Error: " + e);
+        }
+
         if (waitingFor == 0) {
-            chatList.getItems().add("Bot: " + bot.respond(chatText.getText()));
+            chatList.getItems().add("Bot: " + bot.respond(chat));
         } else if (waitingFor == 1) {
-            name = chatText.getText();
+            name = chat;
             helloText.setText("Hello, " + name + ".");
+            userSideBar.setText(name);
             chatList.getItems().add("Bot: " + bot.newUser(1, name));
             waitingFor = 2;
         } else if (waitingFor == 2) {
-            age = chatText.getText();
+            age = chat;
             chatList.getItems().add("Bot: " + bot.newUser(2, age));
             bot.transferValues(name, age);
             waitingFor = 0;
         } else {
             chatList.getItems().add("Bot: Error waiting for is either < 0 or > 2");
         }
+    }
+
+    public void buttonClicked() {
+        chatList.getItems().add("User: " + chatText.getText());
+
+        chat = chatText.getText();
 
         chatText.setText("");
+
+        new Thread(() -> {
+            runChat();
+        }).start();
     }
 
     public void onEnter() {
